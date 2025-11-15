@@ -4,12 +4,10 @@ DB_NAME = "guessing_game.db"
 
 def get_connection():
     """Return a sqlite3 connection."""
-    with sqlite3.connect(DB_NAME) as conn:
-        return conn
-
+    return sqlite3.connect(DB_NAME)
 
 def initialize_database():
-    """Run only once at startup to create required tables."""
+    """Create results table if it doesn't exist."""
     conn = get_connection()
     cursor = conn.cursor()
 
