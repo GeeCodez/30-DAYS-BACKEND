@@ -14,7 +14,7 @@ The Django ORM (Object Relational Mapper) is a system that allows developers to 
 Python classes that represent database tables.  
 Fields inside models represent database columns.
 
-### QuerySets
+### QuerySets 
 A QuerySet is a collection of records retrieved from the database.  
 It is lazy, chainable, and optimized.
 
