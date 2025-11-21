@@ -63,3 +63,17 @@ class StudentDetailView(View):
 
         student.delete()
         return JsonResponse({"message": "Student deleted successfully"}, status=200)
+
+class StudentSearchView(View):
+    def get(self, request):
+        keyword = request.GET.get("full_name", "")
+
+        if not keyword:
+            return JsonResponse(
+                {"error": "Please provide a name to search for"},
+                status=400
+            )
+
+        results = Student.objects.filter(full_name__icontains=keyword).values()
+
+        return JsonResponse({"results": list(results)}, status=200)
