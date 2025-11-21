@@ -53,7 +53,7 @@ def student_update(request, index_number):
 
 def student_detail(request, index_number):
     student = get_object_or_404(Student, index_number=index_number)
-    return render(request, 'students/student_detail.html', {
+    return render(request, 'students/student_details.html', {
         'student': student,
         'page_title': student.full_name
     })
