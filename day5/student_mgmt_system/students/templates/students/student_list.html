@@ -1,0 +1,40 @@
+<h2>{{ page_title }}</h2>
+
+<form method="get" action="{% url 'students:student_list' %}">
+    <input type="text" name="q" placeholder="Search by name or index number" value="{{ query }}">
+    <button type="submit">Search</button>
+</form>
+
+<a href="{% url 'students:student_create' %}">Add New Student</a>
+
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Index Number</th>
+            <th>Full Name</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.index_number }}</td>
+            <td>{{ student.full_name }}</td>
+            <td>{{ student.age }}</td>
+            <td>{{ student.email }}</td>
+            <td>
+    <a href="{% url 'students:student_detail' student.index_number %}">View</a> |
+    <a href="{% url 'students:student_update' student.index_number %}">Edit</a> |
+    <a href="{% url 'students:student_delete' student.index_number %}">Delete</a>
+            </td>
+
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">No students found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
