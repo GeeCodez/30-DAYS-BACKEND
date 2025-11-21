@@ -2,11 +2,12 @@ import json
 from django.http import JsonResponse
 from django.views import View
 from .models import Student
+from django.views.decorators.csrf import csrf_exempt
 
 class StudentListCreateView(View):
     def get(self, request):
         students = list(Student.objects.values())
-        return JsonResponse({"students": students}, status=200)
+        return JsonResponse({"students":students}, status=200)
 
     def post(self, request):
         try:

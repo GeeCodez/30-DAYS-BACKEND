@@ -19,7 +19,7 @@ def create_student(request):
         data = json.loads(request.body)
 
         student = Student.objects.create(
-            full_name=data.get('name'),
+            full_name=data.get('full_name'),
             age=data.get('age'),
             email=data.get('email')
         )
@@ -49,8 +49,8 @@ def update_student(request):
             return JsonResponse({"error": "Student not found"}, status=404)
 
         # Update fields if present
-        if 'name' in data:
-            student.full_name = data['name']
+        if 'full_name' in data:
+            student.full_name = data['full_name']
         if 'age' in data:
             student.age = data['age']
         if 'email' in data:
